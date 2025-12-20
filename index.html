@@ -6,7 +6,7 @@
 
   <title>台東FUNKS | 東京 草野球チーム</title>
   <meta name="description" content="台東FUNKSは東京・台東区を拠点に活動する草野球チームです。見学・体験参加も受付中。" />
-  <meta name="keywords" content="台東FUNKS, FUNKS, 東京 草野球, 草野球チーム, 草野球, baseball, Taito, Tokyo" />
+  <meta name="keywords" content="台東FUNKS, FUNKS, 東京 草野球, 草野球チーム, 草野球, baseball, Taito, Tokyo, 東京　草野球, 草野球チーム" />
 
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
 
@@ -16,9 +16,11 @@
     body {
       margin: 0;
       font-family: 'Shippori Mincho B1', serif;
-      background-color: #0a2342;
+      background-color: #0a2342; /* ヤンキース感の藍 */
       color: #ffffff;
       overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
     }
 
     /* 右下 体験申し込み */
@@ -47,8 +49,7 @@
       0% { opacity: 0; transform: scale(0.6); }
       100% { opacity: 1; transform: scale(1); }
     }
-
-    .fade-in { animation: fadeInUp 1.2s ease forwards; }
+    .fade-in { opacity: 0; animation: fadeInUp 1.1s ease forwards; }
 
     /* HERO */
     .hero {
@@ -62,49 +63,50 @@
       justify-content: center;
       align-items: center;
       text-align: center;
+      overflow: hidden;
     }
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
       background: rgba(0,0,0,0.55);
+      z-index: 1;
     }
 
     .hero h1 {
       position: relative;
       font-family: 'Noto Serif JP', serif;
-      font-size: 6.4em;
+      font-size: 6.0em;
       color: #fff;
-      letter-spacing: .14em;
+      letter-spacing: .12em;
       margin: 0;
       padding: 0 14px;
       white-space: nowrap;
       line-height: 1.05;
       z-index: 2;
       text-shadow:
-        0 2px 0 rgba(255,255,255,0.1),
+        0 2px 0 rgba(255,255,255,0.08),
         0 14px 32px rgba(0,0,0,0.8);
-      animation: fadeInUp 1.2s ease forwards;
+      animation: fadeInUp 1.0s ease forwards;
     }
 
     .hero img {
       position: relative;
-      margin-top: 3em;
+      margin-top: 2.6em;
       max-height: 32vh;
       z-index: 2;
-      animation: zoomIn 1.5s ease forwards;
+      animation: zoomIn 1.25s ease forwards;
       filter: drop-shadow(0 14px 32px rgba(0,0,0,0.85));
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: auto;
     }
 
     /* セクション共通 */
     section {
       margin: 3em auto;
       max-width: 900px;
-      background: linear-gradient(
-        180deg,
-        rgba(255,255,255,0.96),
-        rgba(235,240,247,0.96)
-      );
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(235,240,247,0.96));
       color: #0a2342;
       padding: 2.6em;
       border-radius: 18px;
@@ -115,9 +117,10 @@
 
     section h2 {
       text-align: center;
-      font-size: 2.3em;
+      font-size: 2.25em;
       letter-spacing: .12em;
-      margin-bottom: 1em;
+      margin: 0 0 1em 0;
+      text-shadow: 0 8px 18px rgba(10,35,66,0.12);
     }
 
     /* 監督挨拶 */
@@ -126,101 +129,420 @@
       line-height: 2.0;
       font-size: 1em;
       overflow-wrap: anywhere;
+      word-break: break-word;
+      margin: 0;
     }
 
-    /* カレンダー */
-    .calendar h2 {
+    /* スケジュール */
+    .calendar-title {
       text-align: center;
+      color: #001f4d;
+      font-size: 1.55em;
+      font-weight: 700;
+      letter-spacing: .06em;
+      margin: 0 0 1em 0;
       white-space: nowrap;
-      font-size: 1.6em;
-      margin-bottom: 1em;
+    }
+
+    .calendar-wrap {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 14px 34px rgba(0,0,0,0.18);
+      padding: 14px;
+      overflow: hidden;
     }
 
     .calendar table {
       width: 100%;
       border-collapse: collapse;
       table-layout: fixed;
+      text-align: center;
     }
+
     .calendar th, .calendar td {
-      border: 1px solid #ccc;
+      border: 1px solid rgba(10,35,66,0.18);
       height: 86px;
       vertical-align: top;
-      padding: 6px;
+      padding: 8px 6px;
       background: #ffffff;
       color: #0a2342;
+      position: relative;
     }
-    .calendar th { background: rgba(10,35,66,0.1); }
+
+    .calendar th {
+      background: rgba(10,35,66,0.08);
+      font-weight: 700;
+    }
+
+    .day {
+      font-weight: 700;
+      display: block;
+      text-align: left;
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      font-size: 0.95em;
+    }
+
+    .event {
+      margin-top: 22px;
+      font-size: 0.9em;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+
+    .highlight {
+      background: #0a2342 !important;
+      color: #fff !important;
+      cursor: pointer;
+      box-shadow: inset 0 0 0 2px rgba(255,255,255,0.15);
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .highlight .day, .highlight .event { color: #fff !important; }
+
+    .highlight:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 12px 24px rgba(10,35,66,0.25),
+        inset 0 0 0 2px rgba(255,255,255,0.22);
+    }
+
+    .calendar-caption {
+      margin-top: 14px;
+      text-align: center;
+      font-weight: 700;
+      color: #0a2342;
+    }
+    .calendar-caption a {
+      color: #0a2342;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-weight: 700;
+    }
+
+    /* 歩み */
+    .history-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+      line-height: 2.2;
+      font-size: 1.02em;
+    }
+
+    /* ギャラリー（横スライド） */
+    .gallery-strip {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding: 10px 6px 2px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .gallery-strip::-webkit-scrollbar { height: 8px; }
+    .gallery-strip::-webkit-scrollbar-thumb { background: rgba(10,35,66,0.25); border-radius: 999px; }
+
+    .gallery-item {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 14px 26px rgba(0,0,0,0.18);
+      transform: translateZ(0);
+      cursor: pointer;
+      background: #fff;
+    }
+    .gallery-item img {
+      display: block;
+      height: 190px;
+      width: auto;
+      user-select: none;
+      -webkit-user-drag: none;
+      pointer-events: none;
+    }
+
+    /* クリック拡大（モーダル） */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.82);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 18px;
+    }
+    .modal.open { display: flex; }
+    .modal-inner {
+      max-width: min(980px, 96vw);
+      max-height: 92vh;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.55);
+      background: #0a2342;
+      position: relative;
+    }
+    .modal-inner img {
+      display: block;
+      max-width: 100%;
+      max-height: 92vh;
+    }
+    .modal-close {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      background: rgba(255,255,255,0.92);
+      color: #0a2342;
+      border: none;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* iframe */
+    iframe {
+      border: 0;
+      width: 100%;
+      height: 820px;
+      border-radius: 12px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+      background: #fff;
+    }
 
     /* モバイル調整 */
     @media (max-width: 768px) {
+      section { padding: 1.8em; margin: 2.2em 14px; }
+
       .hero h1 {
-        font-size: 3.2em;
+        font-size: 2.7em;
         letter-spacing: .04em;
       }
-      .hero img { max-width: 82vw; }
+      .hero img { max-width: 82vw; margin-top: 2.2em; }
 
-      .coach-text {
-        font-size: 0.78em; /* ← さらに小さく */
-        line-height: 1.9;
-      }
+      .coach-text { font-size: 0.72em !important; line-height: 1.85 !important; }
 
-      .calendar h2 {
-        font-size: 1.15em;
-      }
+      .calendar-title { font-size: 1.05em; }
+      .calendar th, .calendar td { height: 72px; padding: 6px 4px; }
+      .day { font-size: 0.88em; top: 7px; left: 7px; }
+      .event { font-size: 0.78em; margin-top: 20px; }
+
+      .gallery-item img { height: 160px; }
     }
 
     @media (max-width: 390px) {
       .hero h1 {
-        font-size: 2.9em;
-        letter-spacing: .02em;
+        font-size: 2.55em;
+        letter-spacing: .03em;
       }
-      .coach-text {
-        font-size: 0.74em; /* ← 最小 */
-      }
-      .calendar h2 {
-        font-size: 1.05em;
-      }
+      .coach-text { font-size: 0.68em !important; }
+      .calendar-title { font-size: 0.98em; }
     }
   </style>
 </head>
 
 <body>
 
-<a href="https://forms.gle/5coaVSsQVyQwvQ6e7" class="floating-button"></a>
+  <!-- 右下 体験申し込み（外部リンク） -->
+  <a href="https://forms.gle/5coaVSsQVyQwvQ6e7" class="floating-button" aria-label="体験申し込み"></a>
 
-<!-- HERO -->
-<div class="hero">
-  <h1>台東FUNKS</h1>
-  <img src="https://i.imgur.com/ZM5r01q.jpg" alt="台東FUNKS ロゴ">
-</div>
+  <!-- HERO -->
+  <div class="hero">
+    <h1>台東FUNKS</h1>
+    <img src="https://i.imgur.com/ZM5r01q.jpg" alt="台東FUNKS ロゴ">
+  </div>
 
-<!-- 監督挨拶 -->
-<section class="fade-in">
-  <h2>監督挨拶</h2>
-  <p class="coach-text">
-    台東FUNKSのホームページをご覧いただき、<br>
-    誠にありがとうございます。<br><br>
-    私たち台東FUNKSは、<br>
-    1980年代から活動を続けている草野球チームで、<br>
-    台東区を拠点に地元の大会や練習試合などを通して、<br>
-    野球を通じた交流と成長を楽しんでまいりました。<br><br>
-    現在のメンバーは20代から60代までと幅広く、<br>
-    野球に興味がある方、<br>
-    地域の仲間とつながりたい方、<br>
-    どんな方でも大歓迎です。<br><br>
-    見学や体験参加も随時受け付けておりますので、<br>
-    ぜひお気軽にお問い合わせください。
-  </p>
-</section>
+  <!-- 監督挨拶 -->
+  <section class="fade-in" id="coach">
+    <h2>監督挨拶</h2>
+    <p class="coach-text">
+      台東FUNKSのホームページをご覧いただき、<br>
+      誠にありがとうございます。<br><br>
+      私たち台東FUNKSは、<br>
+      1980年代から活動を続けている草野球チームで、<br>
+      台東区を拠点に地元の大会や練習試合などを通して、<br>
+      野球を通じた交流と成長を楽しんでまいりました。<br><br>
+      現在のメンバーは20代から60代までと幅広く、<br>
+      野球に興味がある方、<br>
+      地域の仲間とつながりたい方、<br>
+      どんな方でも大歓迎です。<br><br>
+      見学や体験参加も随時受け付けておりますので、<br>
+      ぜひお気軽にお問い合わせください。
+    </p>
+  </section>
 
-<!-- お問い合わせ（体験申込フォームに統一） -->
-<section class="fade-in">
-  <h2>体験申し込み</h2>
-  <iframe
-    src="https://forms.gle/5coaVSsQVyQwvQ6e7"
-    width="100%" height="800" frameborder="0">
-  </iframe>
-</section>
+  <!-- スケジュール -->
+  <section class="fade-in" id="schedule">
+    <h2 class="calendar-title">2026年3月スケジュール</h2>
+
+    <div class="calendar-wrap calendar">
+      <table aria-label="2026年3月のスケジュール">
+        <thead>
+          <tr>
+            <th>日</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 2026/3/1 は日曜 -->
+          <tr>
+            <td><span class="day">1</span></td>
+            <td><span class="day">2</span></td>
+            <td><span class="day">3</span></td>
+            <td><span class="day">4</span></td>
+            <td class="highlight" onclick="window.open('https://forms.gle/5coaVSsQVyQwvQ6e7','_blank')">
+              <span class="day">5</span>
+              <div class="event">10:00〜<br>台東</div>
+            </td>
+            <td><span class="day">6</span></td>
+            <td><span class="day">7</span></td>
+          </tr>
+
+          <tr>
+            <td><span class="day">8</span></td>
+            <td><span class="day">9</span></td>
+            <td><span class="day">10</span></td>
+            <td><span class="day">11</span></td>
+            <td class="highlight" onclick="window.open('https://forms.gle/5coaVSsQVyQwvQ6e7','_blank')">
+              <span class="day">12</span>
+              <div class="event">10:00〜<br>台東</div>
+            </td>
+            <td><span class="day">13</span></td>
+            <td><span class="day">14</span></td>
+          </tr>
+
+          <tr>
+            <td><span class="day">15</span></td>
+            <td><span class="day">16</span></td>
+            <td><span class="day">17</span></td>
+            <td><span class="day">18</span></td>
+            <td><span class="day">19</span></td>
+            <td><span class="day">20</span></td>
+            <td><span class="day">21</span></td>
+          </tr>
+
+          <tr>
+            <td><span class="day">22</span></td>
+            <td><span class="day">23</span></td>
+            <td><span class="day">24</span></td>
+            <td><span class="day">25</span></td>
+            <td><span class="day">26</span></td>
+            <td><span class="day">27</span></td>
+            <td><span class="day">28</span></td>
+          </tr>
+
+          <tr>
+            <td><span class="day">29</span></td>
+            <td><span class="day">30</span></td>
+            <td><span class="day">31</span></td>
+            <td></td><td></td><td></td><td></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="calendar-caption">
+        台東：
+        <a href="https://www.taitogeibun.net/riverside/" target="_blank" rel="noopener noreferrer">
+          台東リバーサイドスポーツセンター
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 歩み -->
+  <section class="fade-in" id="history">
+    <h2>歩み</h2>
+    <ul class="history-list">
+      <li>1987年10月　台東区秋季大会3部　優勝</li>
+      <li>1987年 7月　台東区秋季大会3部　優勝</li>
+      <li>1987年 9月　台東区夏季大会3部　優勝</li>
+      <li>2010年 9月　台東区夏季大会2部　優勝</li>
+      <li>2025年12月　台東区秋季大会2部　優勝</li>
+    </ul>
+  </section>
+
+  <!-- ギャラリー（横スライド + クリック拡大） -->
+  <section class="fade-in" id="gallery">
+    <h2>ギャラリー</h2>
+
+    <div class="gallery-strip" aria-label="ギャラリー（横スクロール）">
+      <!-- ここは i.imgur.com 直リンクに統一（拡張子付け） -->
+      <div class="gallery-item" data-src="https://i.imgur.com/RoC0FwV.jpg" title="タップで拡大">
+        <img src="https://i.imgur.com/RoC0FwV.jpg" alt="gallery" draggable="false">
+      </div>
+      <div class="gallery-item" data-src="https://i.imgur.com/xUoS7G5.jpg" title="タップで拡大">
+        <img src="https://i.imgur.com/xUoS7G5.jpg" alt="gallery" draggable="false">
+      </div>
+      <div class="gallery-item" data-src="https://i.imgur.com/tqYFsIT.jpg" title="タップで拡大">
+        <img src="https://i.imgur.com/tqYFsIT.jpg" alt="gallery" draggable="false">
+      </div>
+      <div class="gallery-item" data-src="https://i.imgur.com/meF9x3l.jpg" title="タップで拡大">
+        <img src="https://i.imgur.com/meF9x3l.jpg" alt="gallery" draggable="false">
+      </div>
+
+      <!-- 追加分 -->
+      <div class="gallery-item" data-src="https://i.imgur.com/HidWYce.jpg" title="タップで拡大">
+        <img src="https://i.imgur.com/HidWYce.jpg" alt="gallery" draggable="false">
+      </div>
+      <div class="gallery-item" data-src="https://i.imgur.com/dUqfXxQ.jpg" title="タップで拡大">
+        <img src="https://i.imgur.com/dUqfXxQ.jpg" alt="gallery" draggable="false">
+      </div>
+      <div class="gallery-item" data-src="https://i.imgur.com/5FG4olb.jpg" title="タップで拡大">
+        <img src="https://i.imgur.com/5FG4olb.jpg" alt="gallery" draggable="false">
+      </div>
+    </div>
+  </section>
+
+  <!-- 体験申し込み（埋め込み：短縮URLではなく embedded=true） -->
+  <section class="fade-in" id="contact">
+    <h2>体験申し込み</h2>
+    <iframe
+      src="https://docs.google.com/forms/d/e/1FAIpQLSfCbZQbkHtvZQBgChiSc9Ii4GEOi8MR_O5OJXbnpSbte7xdRg/viewform?embedded=true"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="台東FUNKS 体験申し込みフォーム">
+    </iframe>
+  </section>
+
+  <!-- 画像拡大モーダル -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-inner">
+      <button class="modal-close" id="modalClose" aria-label="閉じる">閉じる</button>
+      <img id="modalImg" alt="拡大画像">
+    </div>
+  </div>
+
+  <script>
+    // 画像の「保存」を完全に防ぐことはできませんが、一般的な保存操作は抑制します
+    document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+    // ギャラリー：クリックで拡大
+    const modal = document.getElementById('modal');
+    const modalImg = document.getElementById('modalImg');
+    const modalClose = document.getElementById('modalClose');
+
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const src = item.getAttribute('data-src');
+        modalImg.src = src;
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+      });
+    });
+
+    function closeModal() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      modalImg.src = '';
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
 
 </body>
 </html>
