@@ -1,54 +1,62 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>台東FUNKS | トップページ</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>台東FUNKS | 東京 草野球チーム</title>
+  <meta name="description" content="台東FUNKSは東京・台東区を拠点に活動する草野球チームです。見学・体験参加も受付中。" />
+  <meta name="keywords" content="台東FUNKS, FUNKS, 東京 草野球, 草野球チーム, 草野球, baseball, Taito, Tokyo" />
+
   <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       font-family: 'Shippori Mincho B1', serif;
-      background-color: #f4f4f4;
-      color: #333;
+      background-color: #0a2342; /* ヤンキース藍色 */
+      color: #ffffff;
       overflow-x: hidden;
     }
+
+    /* 右下 体験申し込み */
     .floating-button {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      background-color: #0a2342;
-      color: white;
+      background-color: #ffffff;
+      color: #0a2342;
       padding: 1em 1.2em;
-      border-radius: 50px;
-      font-weight: bold;
+      border-radius: 999px;
+      font-weight: 700;
       text-decoration: none;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.4);
       z-index: 1000;
+      letter-spacing: .08em;
     }
     .floating-button::after { content: '体験申し込み'; }
 
+    /* アニメーション */
     @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(50px) scale(0.95); }
-      100% { opacity: 1; transform: translateY(0) scale(1); }
+      0% { opacity: 0; transform: translateY(50px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
-    @keyframes zoomInLogo {
-      0% { transform: scale(0.5); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
-    @keyframes popUpImage {
-      0% { transform: scale(0.9); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
+    @keyframes zoomIn {
+      0% { opacity: 0; transform: scale(0.6); }
+      100% { opacity: 1; transform: scale(1); }
     }
 
-    .fade-in-section { opacity: 0; transform: translateY(40px); animation: fadeInUp 1.5s ease forwards; }
+    .fade-in {
+      animation: fadeInUp 1.2s ease forwards;
+    }
 
+    /* HERO */
     .hero {
       position: relative;
       height: 100vh;
-      overflow: hidden;
-      background-image: url('https://i.imgur.com/uIFDg98.jpeg');
+      background-image: url('https://i.imgur.com/7rMqHF9.jpg');
       background-size: cover;
       background-position: center;
       display: flex;
@@ -59,215 +67,221 @@
     .hero::before {
       content: '';
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 1;
-    }
-    .hero h2 {
-      position: relative;
-      color: white;
-      text-align: center;
-      font-family: 'Noto Serif JP', serif;
-      font-size: 7.2em;
-      font-weight: 700;
-      letter-spacing: 6px;
-      text-shadow: 5px 5px 20px rgba(0,0,0,1);
-      margin: 0;
-      z-index: 2;
-      animation: fadeInUp 1.2s ease forwards;
-    }
-    .hero .logo {
-      position: relative;
-      z-index: 2;
-      margin-top: 3em;
-      animation: zoomInLogo 1.8s ease forwards;
-    }
-    .hero .logo img {
-      height: 320px;
-      width: auto;
-      filter: drop-shadow(8px 8px 20px rgba(0,0,0,0.8));
+      inset: 0;
+      background: rgba(0,0,0,0.55);
     }
 
-    section { position: relative; z-index: 1; }
-    .content {
-      padding: 2em;
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 10px;
-      margin: 2em auto;
+    .hero h1 {
+      position: relative;
+      font-family: 'Noto Serif JP', serif;
+      font-size: 7em;
+      color: #fff;
+      letter-spacing: .15em;
+      margin: 0;
+      text-shadow:
+        0 2px 0 rgba(255,255,255,0.1),
+        0 14px 32px rgba(0,0,0,0.8);
+      animation: fadeInUp 1.2s ease forwards;
+      z-index: 2;
+    }
+
+    .hero img {
+      position: relative;
+      margin-top: 3em;
+      max-height: 32vh;
+      filter: drop-shadow(0 14px 32px rgba(0,0,0,0.85));
+      animation: zoomIn 1.5s ease forwards;
+      z-index: 2;
+    }
+
+    /* セクション共通 */
+    section {
+      margin: 3em auto;
       max-width: 900px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-      font-family: 'Shippori Mincho B1', serif;
+      background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.96),
+        rgba(235,240,247,0.96)
+      );
+      color: #0a2342;
+      padding: 2.6em;
+      border-radius: 18px;
+      box-shadow:
+        0 22px 48px rgba(0,0,0,0.35),
+        0 1px 0 rgba(255,255,255,0.9) inset;
+      border: 1px solid rgba(10,35,66,0.18);
+    }
+
+    section h2 {
+      text-align: center;
+      font-size: 2.4em;
+      letter-spacing: .12em;
+      margin-bottom: 1em;
+      text-shadow:
+        0 1px 0 rgba(255,255,255,0.8),
+        0 10px 18px rgba(0,0,0,0.2);
+    }
+
+    section p, section li {
+      text-align: center;
+      line-height: 2.0;
       font-size: 1em;
     }
-    .content h2 {
-      font-size: 2.4em;
-      text-shadow: 4px 4px 10px rgba(0,0,0,0.5);
-      animation: fadeInUp 1.3s ease forwards;
-    }
-    .content p, .history-text, .gallery, iframe { animation: fadeInUp 1.5s ease forwards; }
 
-    .calendar {
-      padding: 2em;
-      max-width: 900px;
-      margin: auto;
-      background: white;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-      border-radius: 10px;
-      font-family: 'Shippori Mincho B1', serif;
-      animation: fadeInUp 1.6s ease forwards;
+    /* カレンダー */
+    .calendar table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
     }
-    .calendar table { width: 100%; border-collapse: collapse; text-align: center; table-layout: fixed; }
     .calendar th, .calendar td {
-      height: 80px;
+      border: 1px solid #ccc;
+      height: 86px;
       vertical-align: top;
-      padding: 0.3em;
-      border: 1px solid #ddd;
+      padding: 6px;
+      background: #ffffff;
+      color: #0a2342;
     }
-    .calendar .highlight { background-color: #0a2342; color: white; cursor: pointer; text-decoration: underline; }
-    .calendar-caption { margin-top: 1em; text-align: center; }
+    .calendar th {
+      background: rgba(10,35,66,0.1);
+    }
+    .highlight {
+      background: #0a2342 !important;
+      color: #ffffff !important;
+      cursor: pointer;
+      text-decoration: underline;
+    }
 
-    /* ギャラリー：横スライド & クリック拡大 */
-    .gallery { display: flex; overflow-x: auto; gap: 1em; padding: 1em; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+    /* 入部条件 */
+    .conditions-list {
+      list-style: none;
+      padding: 0;
+      max-width: 650px;
+      margin: auto;
+    }
+    .conditions-list li {
+      background: rgba(10,35,66,0.08);
+      margin: .7em 0;
+      padding: .9em;
+      border-radius: 14px;
+    }
+
+    /* ギャラリー */
+    .gallery {
+      display: flex;
+      overflow-x: auto;
+      gap: 1.2em;
+      padding: 1em;
+    }
     .gallery img {
-      height: 160px; width: auto; border-radius: 8px; flex-shrink: 0; scroll-snap-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      user-select: none; -webkit-user-drag: none;
+      height: 170px;
+      border-radius: 12px;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.35);
+      user-select: none;
+      -webkit-user-drag: none;
     }
-    .gallery img:hover { transform: scale(1.06); box-shadow: 0 8px 20px rgba(0,0,0,0.5); }
 
-    /* 画像拡大（ライトボックス） */
-    #lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity .2s ease; z-index: 2000; }
-    #lightbox.show { opacity: 1; pointer-events: all; }
-    #lightbox img { max-width: 92vw; max-height: 86vh; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); animation: popUpImage .2s ease; }
-    #lightbox .hint { position: absolute; bottom: 24px; color: #fff; font-size: .85em; opacity: .75; }
-
-    /* モバイル（9:16想定）調整 */
+    /* モバイル */
     @media (max-width: 768px) {
-      .hero { height: 92vh; }
-      .hero h2 { font-size: 4.4em; letter-spacing: 2px; }
-      .hero .logo { margin-top: 2em; }
-      .hero .logo img { height: auto; max-height: 24vh; max-width: 78vw; }
-
-      /* 監督挨拶：フォント大きめ & 勝手改行の抑制 */
-      .content p {
-        font-size: 1.0em; /* 少し大きく */
-        line-height: 1.8em;
-        max-width: none; /* 25ch制限を解除 */
-        margin: 0 auto; 
-        white-space: normal; /* brのみで程よく改行される挙動 */
-        word-break: keep-all; /* 日本語の不要な分割を抑制 */
-      }
-
-      .gallery img { height: 140px; }
+      .hero h1 { font-size: 4.8em; }
+      .hero img { max-width: 80vw; }
+      section { margin: 2em 1em; padding: 2em; }
     }
   </style>
 </head>
+
 <body>
-  <a href="https://forms.gle/5coaVSsQVyQwvQ6e7" class="floating-button"></a>
 
-  <section class="hero">
-    <h2>台東FUNKS</h2>
-    <div class="logo">
-      <img src="https://i.imgur.com/ZM5r01q.jpg" alt="ロゴ">
-    </div>
-  </section>
+<a href="https://forms.gle/5coaVSsQVyQwvQ6e7" class="floating-button"></a>
 
-  <section class="content fade-in-section" id="coach">
-    <h2 style="text-align: center;">監督挨拶</h2>
-    <p style="text-align: center;">
-      台東FUNKSのホームページをご覧いただき、<br>
-      誠にありがとうございます。<br><br>
-      私たち台東FUNKSは、<br>
-      1980年代から活動を続けている草野球チームで、<br>
-      台東区を拠点に地元の大会や練習試合などを通して、<br>
-      野球を通じた交流と成長を楽しんでまいりました。<br><br>
-      現在のメンバーは20代から60代までと幅広く、<br>
-      野球に興味がある方、<br>
-      地域の仲間とつながりたい方、<br>
-      どんな方でも大歓迎です。<br><br>
-      見学や体験参加も随時受け付けておりますので、<br>
-      ぜひお気軽にお問い合わせください。
-    </p>
-  </section>
+<!-- HERO -->
+<div class="hero">
+  <h1>台東FUNKS</h1>
+  <img src="https://i.imgur.com/ZM5r01q.jpg" alt="台東FUNKS ロゴ">
+</div>
 
-  <section class="calendar fade-in-section" id="schedule">
-    <h3 style="text-align: center; color: #001f4d;">2025年10月のスケジュール</h3>
-    <table>
-      <thead>
-        <tr><th>日</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th></tr>
-      </thead>
-      <tbody>
-        <tr><td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td class="highlight" onclick="window.open('https://forms.gle/5coaVSsQVyQwvQ6e7')">5<br><small>10:00〜<br>台東</small></td></tr>
-        <tr><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td class="highlight" onclick="window.open('https://forms.gle/5coaVSsQVyQwvQ6e7')">12<br><small>10:00〜<br>台東</small></td></tr>
-        <tr><td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td></tr>
-        <tr><td>20</td><td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td></tr>
-        <tr><td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td><td></td></tr>
-      </tbody>
-    </table>
-    <div class="calendar-caption">
-      台東：<a href="https://www.taitogeibun.net/riverside/" target="_blank">台東リバーサイドスポーツセンター</a>
-    </div>
-  </section>
+<!-- 監督挨拶 -->
+<section class="fade-in">
+  <h2>監督挨拶</h2>
+  <p>
+    台東FUNKSのホームページをご覧いただき、<br>
+    誠にありがとうございます。<br><br>
+    私たち台東FUNKSは、<br>
+    1980年代から活動を続けている草野球チームで、<br>
+    台東区を拠点に地元の大会や練習試合などを通して、<br>
+    野球を通じた交流と成長を楽しんでまいりました。<br><br>
+    現在のメンバーは20代から60代までと幅広く、<br>
+    野球に興味がある方、地域の仲間とつながりたい方、<br>
+    どんな方でも大歓迎です。<br><br>
+    見学や体験参加も随時受け付けておりますので、<br>
+    ぜひお気軽にお問い合わせください。
+  </p>
+</section>
 
-  <section class="content fade-in-section" id="history">
-    <h2 style="text-align: center;">歩み</h2>
-    <ul class="history-text" style="text-align: center; list-style: none; padding: 0;">
-      <li>1987年10月　台東区秋季大会3部　優勝</li>
-      <li>1987年 7月　台東区秋季大会3部　優勝</li>
-      <li>1987年 9月　台東区夏季大会3部　優勝</li>
-      <li>2010年 9月　台東区夏季大会2部　優勝</li>
-    </ul>
-  </section>
+<!-- スケジュール -->
+<section class="calendar fade-in">
+  <h2>2026年3月 スケジュール</h2>
+  <table>
+    <tr><th>日</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th></tr>
+    <tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+    <tr><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr>
+    <tr><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr>
+    <tr><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
+    <tr><td>29</td><td>30</td><td>31</td><td></td><td></td><td></td><td></td></tr>
+  </table>
+</section>
 
-  <section class="content fade-in-section" id="gallery">
-    <h2 style="text-align: center;">ギャラリー</h2>
-    <div class="gallery">
-      <img src="https://i.imgur.com/HidWYce.jpeg" alt="gallery1">
-      <img src="https://imgur.com/dUqfXxQ.jpg" alt="gallery2">
-      <img src="https://imgur.com/5FG4olb.jpg" alt="gallery3">
-      <img src="https://imgur.com/CLRBcX5.jpg" alt="gallery4">
-      <img src="https://i.imgur.com/p7hSzHH.jpg" alt="gallery5">
-      <img src="https://imgur.com/acwhX6a.jpg" alt="gallery6">
-      <img src="https://imgur.com/q45r5hd.jpg" alt="gallery7">
-      <img src="https://imgur.com/4QGZahT.jpg" alt="gallery8">
-      <img src="https://imgur.com/ReYoyQ0.jpg" alt="gallery9">
-    </div>
-  </section>
+<!-- 歩み -->
+<section class="fade-in">
+  <h2>歩み</h2>
+  <ul class="conditions-list">
+    <li>1987年10月 台東区秋季大会3部 優勝</li>
+    <li>1987年7月 台東区秋季大会3部 優勝</li>
+    <li>1987年9月 台東区夏季大会3部 優勝</li>
+    <li>2010年9月 台東区夏季大会2部 優勝</li>
+    <li>2025年12月 台東区秋季大会2部 優勝</li>
+  </ul>
+</section>
 
-  <section class="content fade-in-section" id="form">
-    <h2 style="text-align: center;">お問合せ</h2>
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd5s3LoGMibvOtqBfMiHPuhQeGIvvQkc_Vv8UJ_Ik4N88QQFQ/viewform?usp=header" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
-  </section>
-
-  <!-- 画像拡大用ライトボックス -->
-  <div id="lightbox" aria-hidden="true">
-    <img src="" alt="拡大画像">
-    <div class="hint">タップで閉じる</div>
+<!-- ギャラリー -->
+<section class="fade-in">
+  <h2>ギャラリー</h2>
+  <div class="gallery">
+    <img src="https://i.imgur.com/RoC0FwV.jpg">
+    <img src="https://i.imgur.com/xUoS7G5.jpg">
+    <img src="https://i.imgur.com/tqYFsIT.jpg">
+    <img src="https://i.imgur.com/meF9x3l.jpg">
+    <img src="https://i.imgur.com/HidWYce.jpeg">
+    <img src="https://i.imgur.com/dUqfXxQ.jpg">
+    <img src="https://i.imgur.com/5FG4olb.jpg">
   </div>
+</section>
 
-  <script>
-    // ギャラリークリックで拡大表示
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = lightbox.querySelector('img');
-    document.querySelectorAll('.gallery img').forEach(img => {
-      img.addEventListener('click', () => {
-        lightboxImg.src = img.src;
-        lightbox.classList.add('show');
-        lightbox.setAttribute('aria-hidden', 'false');
-      });
-    });
-    lightbox.addEventListener('click', () => {
-      lightbox.classList.remove('show');
-      lightbox.setAttribute('aria-hidden', 'true');
-    });
+<!-- 入部条件 -->
+<section class="fade-in">
+  <h2>入部条件</h2>
+  <p>台東FUNKSの詳細な入部にあたる条件は以下の通りです</p>
+  <ul class="conditions-list">
+    <li>責任の取れる社会人（学生可）</li>
+    <li>野球が大好きでやる気のある方</li>
+    <li>最低限の常識がある方</li>
+    <li>時間を守れる方</li>
+    <li>出欠確認に迅速に対応できる方</li>
+    <li>野球経験者</li>
+  </ul>
+  <p>
+    会費：月1,000円（年間10,000円）<br>
+    ※初年度・学生免除<br>
+    ※貸出ユニフォームあり
+  </p>
+</section>
 
-    // 右クリック & ドラッグでの保存を抑制（完全防止は不可）
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    document.querySelectorAll('img').forEach(i => {
-      i.setAttribute('draggable', 'false');
-    });
-  </script>
+<!-- お問い合わせ -->
+<section class="fade-in">
+  <h2>お問合せ</h2>
+  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd5s3LoGMibvOtqBfMiHPuhQeGIvvQkc_Vv8UJ_Ik4N88QQFQ/viewform?usp=header"
+    width="100%" height="800" frameborder="0"></iframe>
+</section>
+
 </body>
 </html>
