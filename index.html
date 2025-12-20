@@ -63,6 +63,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      overflow: hidden;
     }
     .hero::before {
       content: '';
@@ -78,11 +79,17 @@
       color: #fff;
       letter-spacing: .15em;
       margin: 0;
+      z-index: 2;
+
+      /* ここが重要：中央寄せ + 1行固定 */
+      text-align: center;
+      white-space: nowrap;
+      line-height: 1.05;
+
       text-shadow:
         0 2px 0 rgba(255,255,255,0.1),
         0 14px 32px rgba(0,0,0,0.8);
       animation: fadeInUp 1.2s ease forwards;
-      z-index: 2;
     }
 
     .hero img {
@@ -183,9 +190,24 @@
 
     /* モバイル */
     @media (max-width: 768px) {
-      .hero h1 { font-size: 4.8em; }
+      /* 携帯で1行中央・詰めて見切れ防止 */
+      .hero h1 {
+        font-size: 4.4em;
+        letter-spacing: .08em; /* 広すぎると左寄せに見えるので詰める */
+        text-align: center;
+        white-space: nowrap;
+        line-height: 1.05;
+      }
       .hero img { max-width: 80vw; }
       section { margin: 2em 1em; padding: 2em; }
+    }
+
+    /* 超小型（SE系） */
+    @media (max-width: 390px) {
+      .hero h1 {
+        font-size: 4.0em;
+        letter-spacing: .06em;
+      }
     }
   </style>
 </head>
@@ -247,13 +269,13 @@
 <section class="fade-in">
   <h2>ギャラリー</h2>
   <div class="gallery">
-    <img src="https://i.imgur.com/RoC0FwV.jpg">
-    <img src="https://i.imgur.com/xUoS7G5.jpg">
-    <img src="https://i.imgur.com/tqYFsIT.jpg">
-    <img src="https://i.imgur.com/meF9x3l.jpg">
-    <img src="https://i.imgur.com/HidWYce.jpeg">
-    <img src="https://i.imgur.com/dUqfXxQ.jpg">
-    <img src="https://i.imgur.com/5FG4olb.jpg">
+    <img src="https://i.imgur.com/RoC0FwV.jpg" alt="gallery1">
+    <img src="https://i.imgur.com/xUoS7G5.jpg" alt="gallery2">
+    <img src="https://i.imgur.com/tqYFsIT.jpg" alt="gallery3">
+    <img src="https://i.imgur.com/meF9x3l.jpg" alt="gallery4">
+    <img src="https://i.imgur.com/HidWYce.jpeg" alt="gallery5">
+    <img src="https://i.imgur.com/dUqfXxQ.jpg" alt="gallery6">
+    <img src="https://i.imgur.com/5FG4olb.jpg" alt="gallery7">
   </div>
 </section>
 
@@ -279,8 +301,10 @@
 <!-- お問い合わせ -->
 <section class="fade-in">
   <h2>お問合せ</h2>
-  <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd5s3LoGMibvOtqBfMiHPuhQeGIvvQkc_Vv8UJ_Ik4N88QQFQ/viewform?usp=header"
-    width="100%" height="800" frameborder="0"></iframe>
+  <iframe
+    src="https://docs.google.com/forms/d/e/1FAIpQLSd5s3LoGMibvOtqBfMiHPuhQeGIvvQkc_Vv8UJ_Ik4N88QQFQ/viewform?usp=header"
+    width="100%" height="800" frameborder="0">
+  </iframe>
 </section>
 
 </body>
