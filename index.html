@@ -16,7 +16,7 @@
     body {
       margin: 0;
       font-family: 'Shippori Mincho B1', serif;
-      background-color: #0a2342; /* ヤンキース藍色 */
+      background-color: #0a2342;
       color: #ffffff;
       overflow-x: hidden;
     }
@@ -76,18 +76,15 @@
     .hero h1 {
       position: relative;
       font-family: 'Noto Serif JP', serif;
-      font-size: 7em;
+      font-size: 6.4em; /* ★ 少し縮小 */
       color: #fff;
-      letter-spacing: .15em;
+      letter-spacing: .14em;
       margin: 0;
       z-index: 2;
-
-      /* 中央寄せ+1行固定（モバイルでも崩れないように） */
       width: 100%;
       text-align: center;
       white-space: nowrap;
       line-height: 1.05;
-
       text-shadow:
         0 2px 0 rgba(255,255,255,0.1),
         0 14px 32px rgba(0,0,0,0.8);
@@ -123,7 +120,7 @@
 
     section h2 {
       text-align: center;
-      font-size: 2.4em;
+      font-size: 2.3em;
       letter-spacing: .12em;
       margin-bottom: 1em;
       text-shadow:
@@ -134,20 +131,21 @@
     section p, section li {
       text-align: center;
       line-height: 2.0;
-      font-size: 1em;
     }
 
-    /* 監督挨拶：本文サイズを少し小さく */
+    /* 監督挨拶 */
     .coach-text {
-      font-size: 0.98em;
+      font-size: 0.92em; /* ★ 小さく */
       line-height: 2.05;
     }
 
     /* カレンダー */
-    .calendar h2{
-      white-space: nowrap; /* 1行固定 */
-      letter-spacing: .08em;
+    .calendar h2 {
+      white-space: nowrap;
+      letter-spacing: .06em;
+      font-size: 1.7em; /* ★ 小さく */
     }
+
     .calendar table {
       width: 100%;
       border-collapse: collapse;
@@ -164,70 +162,34 @@
     .calendar th {
       background: rgba(10,35,66,0.1);
     }
-    .highlight {
-      background: #0a2342 !important;
-      color: #ffffff !important;
-      cursor: pointer;
-      text-decoration: underline;
-    }
-
-    /* 入部条件 */
-    .conditions-list {
-      list-style: none;
-      padding: 0;
-      max-width: 650px;
-      margin: auto;
-    }
-    .conditions-list li {
-      background: rgba(10,35,66,0.08);
-      margin: .7em 0;
-      padding: .9em;
-      border-radius: 14px;
-    }
-
-    /* ギャラリー */
-    .gallery {
-      display: flex;
-      overflow-x: auto;
-      gap: 1.2em;
-      padding: 1em;
-    }
-    .gallery img {
-      height: 170px;
-      border-radius: 12px;
-      box-shadow: 0 12px 28px rgba(0,0,0,0.35);
-      user-select: none;
-      -webkit-user-drag: none;
-    }
 
     /* モバイル */
     @media (max-width: 768px) {
       .hero h1 {
-        font-size: 4.4em;
-        width: 100%;
-        text-align: center;
-        white-space: nowrap;   /* 1行固定 */
-        letter-spacing: .06em; /* letter-spacingを詰めて「左寄せに見える」感を解消 */
-        line-height: 1.05;
+        font-size: 4.0em; /* ★ 見切れ防止 */
+        letter-spacing: .06em;
       }
       .hero img { max-width: 80vw; }
-      section { margin: 2em 1em; padding: 2em; }
 
-      /* 監督挨拶：携帯で少し小さく */
-      .coach-text { font-size: 0.92em; }
+      .coach-text {
+        font-size: 0.88em; /* ★ SPでさらに微調整 */
+      }
 
-      /* カレンダー見出し：1行に収める */
-      .calendar h2 { font-size: 1.6em; letter-spacing: .04em; }
+      .calendar h2 {
+        font-size: 1.45em;
+      }
     }
 
-    /* 超小型（SE系） */
     @media (max-width: 390px) {
       .hero h1 {
-        font-size: 4.0em;
-        letter-spacing: .04em;
+        font-size: 3.6em;
       }
-      .calendar h2 { font-size: 1.45em; }
-      .coach-text { font-size: 0.90em; }
+      .coach-text {
+        font-size: 0.85em;
+      }
+      .calendar h2 {
+        font-size: 1.35em;
+      }
     }
   </style>
 </head>
@@ -236,13 +198,11 @@
 
 <a href="https://forms.gle/5coaVSsQVyQwvQ6e7" class="floating-button"></a>
 
-<!-- HERO -->
 <div class="hero">
   <h1>台東FUNKS</h1>
   <img src="https://i.imgur.com/ZM5r01q.jpg" alt="台東FUNKS ロゴ">
 </div>
 
-<!-- 監督挨拶 -->
 <section class="fade-in">
   <h2>監督挨拶</h2>
   <p class="coach-text">
@@ -261,7 +221,6 @@
   </p>
 </section>
 
-<!-- スケジュール -->
 <section class="calendar fade-in">
   <h2>2026年3月 スケジュール</h2>
   <table>
@@ -272,60 +231,6 @@
     <tr><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr>
     <tr><td>29</td><td>30</td><td>31</td><td></td><td></td><td></td><td></td></tr>
   </table>
-</section>
-
-<!-- 歩み -->
-<section class="fade-in">
-  <h2>歩み</h2>
-  <ul class="conditions-list">
-    <li>1987年10月 台東区秋季大会3部 優勝</li>
-    <li>1987年7月 台東区秋季大会3部 優勝</li>
-    <li>1987年9月 台東区夏季大会3部 優勝</li>
-    <li>2010年9月 台東区夏季大会2部 優勝</li>
-    <li>2025年12月 台東区秋季大会2部 優勝</li>
-  </ul>
-</section>
-
-<!-- ギャラリー -->
-<section class="fade-in">
-  <h2>ギャラリー</h2>
-  <div class="gallery">
-    <img src="https://i.imgur.com/RoC0FwV.jpg" alt="gallery1">
-    <img src="https://i.imgur.com/xUoS7G5.jpg" alt="gallery2">
-    <img src="https://i.imgur.com/tqYFsIT.jpg" alt="gallery3">
-    <img src="https://i.imgur.com/meF9x3l.jpg" alt="gallery4">
-    <img src="https://i.imgur.com/HidWYce.jpeg" alt="gallery5">
-    <img src="https://i.imgur.com/dUqfXxQ.jpg" alt="gallery6">
-    <img src="https://i.imgur.com/5FG4olb.jpg" alt="gallery7">
-  </div>
-</section>
-
-<!-- 入部条件 -->
-<section class="fade-in">
-  <h2>入部条件</h2>
-  <p>台東FUNKSの詳細な入部にあたる条件は以下の通りです</p>
-  <ul class="conditions-list">
-    <li>責任の取れる社会人（学生可）</li>
-    <li>野球が大好きでやる気のある方</li>
-    <li>最低限の常識がある方</li>
-    <li>時間を守れる方</li>
-    <li>出欠確認に迅速に対応できる方</li>
-    <li>野球経験者</li>
-  </ul>
-  <p>
-    会費：月1,000円（年間10,000円）<br>
-    ※初年度・学生免除<br>
-    ※貸出ユニフォームあり
-  </p>
-</section>
-
-<!-- お問い合わせ -->
-<section class="fade-in">
-  <h2>お問合せ</h2>
-  <iframe
-    src="https://docs.google.com/forms/d/e/1FAIpQLSd5s3LoGMibvOtqBfMiHPuhQeGIvvQkc_Vv8UJ_Ik4N88QQFQ/viewform?usp=header"
-    width="100%" height="800" frameborder="0">
-  </iframe>
 </section>
 
 </body>
